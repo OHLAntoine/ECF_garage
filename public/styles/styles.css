@@ -1,0 +1,64 @@
+/* Reset / style général */
+
+* {
+    font-family: 'Barlow', sans-serif;
+    color: var(--black-);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+:root {
+    --red-: #D92332;
+    --pink_strong-: #D94350;
+    --pink_gentle-: #D9777F;
+    --black-: #262526;
+    --white-: #F2F2F2;
+}
+
+.header, .footer {
+    background-color: var(--black-);
+}
+
+body {
+    height: 100%;
+}
+
+/* Header */
+
+
+.logo_header {
+    width: 60%;
+    height: 60%;
+}
+
+.links_navbar li a {
+    color: var(--pink_gentle-);
+}
+
+.links_navbar li a:hover {
+    color: var(--pink_strong-);
+}
+
+/* Footer */
+
+
+.copyright {
+    color: var(--white-);
+}
+
+.logo_footer {
+    height: 80%;
+    width: 80%;
+}
+
+.planning,
+.planning_times > *,
+.adress {
+    color: var(--pink_gentle-);
+}
+
+.telephone {
+    color: var(--pink_gentle-);
+}

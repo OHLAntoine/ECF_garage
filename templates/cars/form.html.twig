@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}🚗Ajouter un véhicule 🚗{% endblock %}
+
+{% block body %}
+
+    {{ form_start(car_form) }}
+        {{ form_rest(car_form) }}
+        <input type="submit" value="Ajouter le véhicule !">
+    {{ form_end(car_form) }}
+
+{% endblock %}
