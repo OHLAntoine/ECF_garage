@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CarType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -16,6 +17,9 @@ class CarType extends AbstractType {
             ->add("title", TextType::class,[
                 "label" => "Le titre de l'annonce",
                 "required" => true,
+                "constraints" => [
+                    new NotBlank(["message" => "Le titre ne doit pas être vide !"])
+                ]
             ])
             ->add("price", NumberType::class,[
                 "label" => "Le prix",
@@ -39,6 +43,9 @@ class CarType extends AbstractType {
     {
         $resolver->setDefaults([
             "data_class" => Car::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',
+            'csrf_token_id' => 'car_item',
         ]);
     }
 }

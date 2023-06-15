@@ -3,54 +3,28 @@
 {% block title %}🚗Les bonnes Occasions !🚗{% endblock %}
 
 {% block body %}
-<div class="d-flex align-items-center justify-content-around mb-5 mt-5 row">
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+    <div class="d-flex align-items-center justify-content-around mb-5 mt-5 row">
+
+        {% for car in cars %}
+
+            <div class="card col-6 mb-5" style="width: 18rem;">
+                {% if car.image %}
+                <img src="{{ car.image }}" class="card-img-top" alt="{{ car.image }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ car.title }}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ car.price }}</li>
+                        <li class="list-group-item">{{ car.circulationDate }}</li>
+                        <li class="list-group-item">{{ car.km }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="btn btn-primary">En savoir plus ?</a>
+                    </div>
+                </div>
+            </div>
+            
+        {% endfor %}
+
     </div>
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-    <div class="card col-6 mb-5" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
-</div>
 {% endblock %}

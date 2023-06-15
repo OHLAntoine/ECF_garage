@@ -1,18 +1,30 @@
 <?php
 
 namespace App\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
-class Car {
+#[ORM\Entity()]
+#[ORM\Table(name: "car")]
+class Car 
+{
+    #[ORM\Id()]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+    #[ORM\Column(type: "integer")]
     private int $id;
 
+    #[ORM\Column(type: "string", length: "255")]
     private ?string $title = null;
 
-    private ?int $price = null;
+    #[ORM\Column(type: "float")]
+    private ?float $price = null;
 
+    #[ORM\Column(type: "text")]
     private ?string $image = null;
 
+    #[ORM\Column(type: "integer")]
     private ?int $circulationDate = null;
 
+    #[ORM\Column(type: "integer")]
     private ?int $km = null;
 
     public function getId(): int
