@@ -37,12 +37,11 @@
                     </ul>
 
                     <div class="col-md-3 text-end">
-                    {# {% if app.user %} 
-                            Bienvenue {{ app.user.username }}
-                        <a href="/logout" class="btn btn-danger">Se déconnecter</a>
-                    {% else %} #}
-                        <a href="/login" class="btn btn-secondary">Connexion</a>
-                    {# {% endif %} #}
+                    {% if app.user %}
+                        <a href="logout" class="btn btn-danger">Se déconnecter</a>
+                    {% else %}
+                        <a href="login" class="btn btn-secondary">Connexion</a>
+                    {% endif %}
                     </div>
                 </header>
             </div>
