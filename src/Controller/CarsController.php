@@ -35,11 +35,39 @@ class CarsController extends AbstractController
             $entityManager->persist($car);
             $entityManager->flush();
 
-            // return $this->redirectToRoute("home");
+            return $this->redirectToRoute("cars");
         }
 
         return $this->render('cars/form.html.twig', [
             "car_form" => $form->createView(),
         ]);
+    }
+
+    #[Route('/update-car/{id<\d+>}', name: 'update-car')]
+    public function update(Car $car, Request $request, ManagerRegistry $doctrine): Response
+    {
+        $form = $this->createForm(CarType::class, $car);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute("cars");
+        }
+
+        return $this->render('cars/form.html.twig', [
+            "car_form" => $form->createView(),
+        ]);
+    }
+
+    #[Route('/delete-car/{id<\d+>}', name: "delete-car")]
+    public function delete(Car $car, ManagerRegistry $doctrine) : Response
+    {
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($car);
+        $entityManager->flush();
+
+        return $this->redirectToRoute("cars");
     }
 }
