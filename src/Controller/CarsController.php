@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Repository\CarRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarsController extends AbstractController
 {
     #[Route('/cars', name: 'cars')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine, Request $request, CarRepository $repo): Response
     {
+        $search = $request->request->get('search');
         $repository = $doctrine->getRepository(Car::class);
         $cars = $repository->findAll();
+
+        if ($search) {
+            $cars = $repo->findBySearch($search);
+        }
+
         return $this->render('cars/index.html.twig', [
             "cars" => $cars,
         ]);

@@ -3,6 +3,12 @@
 {% block title %}🚗Les bonnes Occasions !🚗{% endblock %}
 
 {% block body %}
+
+    <form class="d-flex" method="POST">
+        <input class="form-control me-2" type="search" placeholder="Rechercher" name="search" aria-label="Search">
+        <button class="btn btn-outline-danger" type="submit"><i class="bi bi-search search_icon"></i></button>
+    </form>
+
     <div class="d-flex align-items-center justify-content-around mb-5 mt-5 row">
 
         {% for car in cars %}
@@ -14,9 +20,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ car.title }}</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ car.price }}</li>
-                        <li class="list-group-item">{{ car.circulationDate }}</li>
-                        <li class="list-group-item">{{ car.km }}</li>
+                        <li class="list-group-item">{{ car.price }}€</li>
+                        <li class="list-group-item">Mise en circulation en{{ car.circulationDate }}</li>
+                        <li class="list-group-item">{{ car.km }}km au compteur</li>
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-primary">En savoir plus ?</a>
