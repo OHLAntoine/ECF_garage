@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Car;
+use App\Entity\Planning;
 use App\Entity\Service;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -69,5 +70,40 @@ class AppFixtures extends Fixture
         $manager->persist($reparation);
         $manager->flush();
 
+        // Ajout des horaires de la semaine
+        $lundi = new Planning();
+        $lundi->setDayOfTheWeek('Lundi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(new \DateTime('14:00'))->setAfternoonEnd(new \DateTime('18:00'));
+        $manager->persist($lundi);
+        $manager->flush();
+
+        $mardi = new Planning();
+        $mardi->setDayOfTheWeek('Mardi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(new \DateTime('14:00'))->setAfternoonEnd(new \DateTime('18:00'));
+        $manager->persist($mardi);
+        $manager->flush();
+
+        $mercredi = new Planning();
+        $mercredi->setDayOfTheWeek('Mercredi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(new \DateTime('14:00'))->setAfternoonEnd(new \DateTime('18:00'));
+        $manager->persist($mercredi);
+        $manager->flush();
+
+        $jeudi = new Planning();
+        $jeudi->setDayOfTheWeek('Jeudi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(new \DateTime('14:00'))->setAfternoonEnd(new \DateTime('18:00'));
+        $manager->persist($jeudi);
+        $manager->flush();
+
+        $vendredi = new Planning();
+        $vendredi->setDayOfTheWeek('Vendredi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(new \DateTime('14:00'))->setAfternoonEnd(new \DateTime('18:00'));
+        $manager->persist($vendredi);
+        $manager->flush();
+
+        $samedi = new Planning();
+        $samedi->setDayOfTheWeek('Samedi')->setMorningStart(new \DateTime('08:45'))->setMorningEnd(new \DateTime('12:00'))->setAfternoonStart(null)->setAfternoonEnd(null);
+        $manager->persist($samedi);
+        $manager->flush();
+
+        $dimanche = new Planning();
+        $dimanche->setDayOfTheWeek('Dimanche')->setMorningStart(null)->setMorningEnd(null)->setAfternoonStart(null)->setAfternoonEnd(null);
+        $manager->persist($dimanche);
+        $manager->flush();
     }
 }
