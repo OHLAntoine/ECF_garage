@@ -18,7 +18,7 @@ class Car
     #[ORM\Column(type: "float")]
     private ?float $price = null;
 
-    #[ORM\Column(type: "text")]
+    #[ORM\Column(type: "string")]
     private ?string $image = null;
 
     #[ORM\Column(type: "integer")]

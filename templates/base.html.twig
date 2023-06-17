@@ -36,7 +36,9 @@
                         <li><a href="#" class="nav-link px-2">Nous contacter !</a></li>
                         {% if app.user %}
                         <li><a href="new-car" class="nav-link px-2">Ajouter un véhicule</a></li>
-                        <li><a href="new-user" class="nav-link px-2">Ajouter un nouvel utilisateur</a></li>
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <li><a href="new-user" class="nav-link px-2">Ajouter un nouvel utilisateur</a></li>
+                            {% endif %}
                         {% endif %}
                     </ul>
 
