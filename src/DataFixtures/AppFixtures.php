@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Car;
+use App\Entity\Service;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -31,7 +32,7 @@ class AppFixtures extends Fixture
         $manager->persist($employe);
         $manager->flush();
 
-        // Ajout de quelques Post
+        // Ajout de quelques véhicules
         $audi = new Car();
         $audi->setTitle('Audi presque neuve')->setPrice(15000)->setImage('audi.avif')->setCirculationDate(2018)->setKm(40000);
         $manager->persist($audi);
@@ -50,6 +51,22 @@ class AppFixtures extends Fixture
         $honda = new Car();
         $honda->setTitle('Honda récente')->setPrice(9950)->setImage('honda.avif')->setCirculationDate(2020)->setKm(110000);
         $manager->persist($honda);
+        $manager->flush();
+
+        // Ajout de quelques services
+        $revision = new Service();
+        $revision->setTitle('Révision')->setDescription('Celle-ci se réalise sur différents éléments de votre voiture, dont l’identification, la direction, la visibilité, l’éclairage, la liaison au sol, la mécanique, le niveau de pollution, la carrosserie, etc');
+        $manager->persist($revision);
+        $manager->flush();
+
+        $entretien = new Service();
+        $entretien->setTitle('Entretien')->setDescription('Vérifications au niveau du pare-brise, des feux et des essuie-glaces, des contrôles internes et externes, niveau d\'huile et pneumatique.');
+        $manager->persist($entretien);
+        $manager->flush();
+
+        $reparation = new Service();
+        $reparation->setTitle('Réparation')->setDescription('Diverses qui peuvent aller de la remise en état des pneus, des plaquettes de frein, des amortisseurs et des autres organes mécaniques à la carroserie');
+        $manager->persist($reparation);
         $manager->flush();
 
     }

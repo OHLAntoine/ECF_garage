@@ -15,7 +15,7 @@
 
             <div class="card col-6 mb-5" style="width: 18rem;">
                 {% if car.image %}
-                <img src={{ asset('uploads/') ~ car.image }} class="card-img-top" alt="{{ car.image }}" style="width: 16.5rem; height: 16.5rem;">
+                    <img src={{ asset('uploads/') ~ car.image }} class="card-img-top car-image" alt="{{ car.image }}" style="width: 16.5rem; height: 16.5rem; object-fit: contain;">
                 {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ car.title }}</h5>

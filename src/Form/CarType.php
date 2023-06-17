@@ -33,6 +33,7 @@ class CarType extends AbstractType {
             ->add("image", FileType::class,[
                 "label" => "L'image",
                 "required" => true,
+                "data_class" => null,
                 "constraints" => [
                     new NotBlank(["message" => "Vous devez ajouter une image !"]),
                     new File([
