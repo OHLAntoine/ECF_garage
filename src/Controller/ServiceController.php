@@ -35,7 +35,7 @@ class ServiceController extends AbstractController
             ]);
 
         }
-        return $this->redirectToRoute("cars");
+        return $this->redirectToRoute("home");
     }
 
     #[Route('/update-service/{id<\d+>}', name: 'update-service')]
@@ -56,6 +56,20 @@ class ServiceController extends AbstractController
             return $this->render('service/form.html.twig', [
                 "service_form" => $form->createView(),
             ]);
+        }
+        return $this->redirectToRoute("home");
+    }
+
+    #[Route('/delete-service/{id<\d+>}', name: "delete-service")]
+    public function delete(Service $service, ManagerRegistry $doctrine) : Response
+    {
+        if ($this->isGranted('ROLE_ADMIN')) {
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($service);
+            $entityManager->flush();
+
+            return $this->redirectToRoute("home");
         }
         return $this->redirectToRoute("home");
     }

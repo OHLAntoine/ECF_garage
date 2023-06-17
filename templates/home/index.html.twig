@@ -15,6 +15,7 @@
                     <a href="#" class="icon-link">Demander un devis</a>
                     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                         <a href="{{ path('update-service', {'id': service.id}) }}" class="icon-link text-danger">Modifier ce service</a>
+                        <a href="{{ path('delete-service', {'id': service.id}) }}" class="icon-link text-danger">Supprimer ce service</a>
                     {% endif %}
                 </div>
             {% endfor %}
