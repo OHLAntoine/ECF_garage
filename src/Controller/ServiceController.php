@@ -15,7 +15,7 @@ class ServiceController extends AbstractController
     #[Route('/new-service', name: 'new-service')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
-        if ($this->getUser()) {
+        if ($this->isGranted('ROLE_ADMIN')) {
 
             $car = new Service();
 
