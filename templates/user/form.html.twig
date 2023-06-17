@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}🚗Crée un nouvel utilisateur 🚗{% endblock %}
+
+{% block body %}
+<div class="mt-5 mb-5">
+    {{ form_start(user_form) }}
+        {{ form_row( user_form.email) }}
+        {{ form_label(user_form.password) }}
+            <div class="input-group">
+                {{ form_widget(user_form.password) }}
+                <span role="button" class="input-group-text" onClick="togglePassword()">                
+                    <i class="bi bi-eye" id="eye"></i>
+                    <i class="bi bi-eye-slash d-none" id="eye-slash"></i>
+                </span>
+            </div>
+        {{ form_label(user_form.confirm)}}
+            <div class="input-group">
+        {{ form_widget(user_form.confirm) }}
+                <span role="button" class="input-group-text" onClick="toggleConfirmPassword()">                
+                    <i class="bi bi-eye" id="confirm_eye"></i>
+                    <i class="bi bi-eye-slash d-none" id="confirm_eye-slash"></i>
+                </span>
+            </div>
+
+        {{ form_row(user_form._token) }}
+
+        <input class="btn btn-success mt-3" type="submit" value="Créer le compte">
+
+    {{ form_end(user_form) }}
+</div>
+{% endblock %}

@@ -20,8 +20,10 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="btn btn-primary">En savoir plus ?</a>
-                        <a href="{{ path('update-car', {'id': car.id}) }}" class="btn btn-secondary">Modifier</a>
-                        <a href="{{ path('delete-car', {'id': car.id}) }}" class="btn btn-danger">Supprimer</a>
+                        {% if app.user %}
+                            <a href="{{ path('update-car', {'id': car.id}) }}" class="btn btn-secondary">Modifier</a>
+                            <a href="{{ path('delete-car', {'id': car.id}) }}" class="btn btn-danger">Supprimer</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

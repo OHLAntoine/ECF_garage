@@ -25,49 +25,62 @@ class CarsController extends AbstractController
     #[Route('/new-car', name: 'new-car')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
-        $car = new Car();
+        if ($this->getUser()) {
 
-        $form = $this->createForm(CarType::class, $car);
+            $car = new Car();
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($car);
-            $entityManager->flush();
+            $form = $this->createForm(CarType::class, $car);
 
-            return $this->redirectToRoute("cars");
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($car);
+                $entityManager->flush();
+
+                return $this->redirectToRoute("cars");
+            }
+
+            return $this->render('cars/form.html.twig', [
+                "car_form" => $form->createView(),
+            ]);
+
         }
-
-        return $this->render('cars/form.html.twig', [
-            "car_form" => $form->createView(),
-        ]);
+        return $this->redirectToRoute("cars");
     }
 
     #[Route('/update-car/{id<\d+>}', name: 'update-car')]
     public function update(Car $car, Request $request, ManagerRegistry $doctrine): Response
     {
-        $form = $this->createForm(CarType::class, $car);
+        if ($this->getUser()) {
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->flush();
+            $form = $this->createForm(CarType::class, $car);
 
-            return $this->redirectToRoute("cars");
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->flush();
+
+                return $this->redirectToRoute("cars");
+            }
+
+            return $this->render('cars/form.html.twig', [
+                "car_form" => $form->createView(),
+            ]);
         }
-
-        return $this->render('cars/form.html.twig', [
-            "car_form" => $form->createView(),
-        ]);
+        return $this->redirectToRoute("cars");
     }
 
     #[Route('/delete-car/{id<\d+>}', name: "delete-car")]
     public function delete(Car $car, ManagerRegistry $doctrine) : Response
     {
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($car);
-        $entityManager->flush();
+        if ($this->getUser()) {
 
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($car);
+            $entityManager->flush();
+
+            return $this->redirectToRoute("cars");
+        }
         return $this->redirectToRoute("cars");
     }
 }
