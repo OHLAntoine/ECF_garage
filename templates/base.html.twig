@@ -73,13 +73,15 @@
                         <div class="col-6 col-md-4">
                             <h5 class="planning">Horaires d'ouverture</h5>
                             <ul class="nav flex-column planning_times">
-                                <li>Lun.: 08:45 - 12:00, 14:00-18:00</li>
-                                <li>Mar.: 08:45 - 12:00, 14:00-18:00</li>
-                                <li>Mer.: 08:45 - 12:00, 14:00-18:00</li>
-                                <li>Jeu.: 08:45 - 12:00, 14:00-18:00</li>
-                                <li>Ven.: 08:45 - 12:00, 14:00-18:00</li>
-                                <li>Sam.: 08:45 - 12:00</li>
-                                <li>Fermé</li>
+                            {% for horaire in horaires %}
+                                {% if horaire.morningStart is empty and horaire.morningEnd is empty and horaire.afternoonStart is empty and horaire.afternoonEnd is empty%}
+                                <li>{{ horaire.dayOfTheWeek[0:3] }}. : Fermé</li>
+                                {% elseif horaire.afternoonStart is empty and horaire.afternoonEnd is empty  %}
+                                <li>{{ horaire.dayOfTheWeek[0:3] }}. : {{ horaire.morningStart|date("H:i") ~ "-" ~ horaire.morningEnd|date("H:i")}}, Fermé</li>
+                                {% else %}
+                                <li>{{ horaire.dayOfTheWeek[0:3] }}. : {{ horaire.morningStart|date("H:i") ~ "-" ~ horaire.morningEnd|date("H:i")}}, {{ horaire.afternoonStart|date("H:i") ~ "-" ~ horaire.afternoonEnd|date("H:i")}}</li>
+                                {% endif %}
+                            {% endfor %}
                             </ul>
                         </div>
 
