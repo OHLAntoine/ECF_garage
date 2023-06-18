@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}🚗Modification du planning 🚗{% endblock %}
+
+{% block body %}
+
+    <h3>{{ planning.dayOfTheWeek }}</h3>
+
+    {{ form_start(planning_form) }}
+        {{ form_rest(planning_form) }}
+        <input type="submit" value="Valider le nouvel horaire" class="btn btn-primary mb-5">
+
+{% endblock %}

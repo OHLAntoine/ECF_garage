@@ -76,10 +76,19 @@
                             {% for horaire in horaires %}
                                 {% if horaire.morningStart is empty and horaire.morningEnd is empty and horaire.afternoonStart is empty and horaire.afternoonEnd is empty%}
                                 <li>{{ horaire.dayOfTheWeek[0:3] }}. : Fermé</li>
+                                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                                        <a href="{{ path('edit-planning', {'id': horaire.id}) }}" class="icon-link text-danger">Modifier</a>
+                                    {% endif %}
                                 {% elseif horaire.afternoonStart is empty and horaire.afternoonEnd is empty  %}
                                 <li>{{ horaire.dayOfTheWeek[0:3] }}. : {{ horaire.morningStart|date("H:i") ~ "-" ~ horaire.morningEnd|date("H:i")}}, Fermé</li>
+                                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                                        <a href="{{ path('edit-planning', {'id': horaire.id}) }}" class="icon-link text-danger">Modifier</a>
+                                    {% endif %}
                                 {% else %}
                                 <li>{{ horaire.dayOfTheWeek[0:3] }}. : {{ horaire.morningStart|date("H:i") ~ "-" ~ horaire.morningEnd|date("H:i")}}, {{ horaire.afternoonStart|date("H:i") ~ "-" ~ horaire.afternoonEnd|date("H:i")}}</li>
+                                    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+                                        <a href="{{ path('edit-planning', {'id': horaire.id}) }}" class="icon-link text-danger">Modifier</a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                             </ul>
