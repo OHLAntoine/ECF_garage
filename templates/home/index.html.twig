@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="container px-4 py-5" id="featured-3">
-        <h2 class="pb-2 border-bottom">Nos services</h2>
+        <h2 class="pb-2 border-bottom border-danger">Nos services</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             {% for service in services %}
                 <div class="feature col">
@@ -12,7 +12,7 @@
                     </div>
                     <h3 class="fs-2 text-body-emphasis">{{ service.title }}</h3>
                     <p>{{ service.description }}</p>
-                    <a href="#" class="icon-link">Demander un devis</a>
+                    <a href="#" class="btn btn-primary">Demander un devis</a>
                     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                         <a href="{{ path('update-service', {'id': service.id}) }}" class="icon-link text-danger">Modifier ce service</a>
                         <a href="{{ path('delete-service', {'id': service.id}) }}" class="icon-link text-danger">Supprimer ce service</a>

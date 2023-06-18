@@ -25,6 +25,10 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Header */
 
 
@@ -41,9 +45,27 @@ body {
     color: var(--pink_strong-);
 }
 
+.menu_links {
+    flex-grow: 0 !important;
+}
+
+@media (max-width: 576px) {
+    .navigation {
+        justify-content: space-between;
+    }
+}
+
 /* Body */
 
+.cards-car {
+    width: 18rem;
+}
 
+.car-image {
+    width: 16.5rem; 
+    height: 16.5rem; 
+    object-fit: contain;
+}
 
 /* Footer */
 
