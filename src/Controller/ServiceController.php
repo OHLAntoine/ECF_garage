@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Planning;
 use App\Entity\Service;
 use App\Form\ServiceType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,6 +17,10 @@ class ServiceController extends AbstractController
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->isGranted('ROLE_ADMIN')) {
+
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
 
             $car = new Service();
 
@@ -32,6 +37,7 @@ class ServiceController extends AbstractController
 
             return $this->render('service/form.html.twig', [
                 "service_form" => $form->createView(),
+                'horaires' => $horaires,
             ]);
 
         }
@@ -42,6 +48,10 @@ class ServiceController extends AbstractController
     public function update(Service $service, Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->isGranted('ROLE_ADMIN')) {
+
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
 
             $form = $this->createForm(ServiceType::class, $service);
 
@@ -55,6 +65,7 @@ class ServiceController extends AbstractController
 
             return $this->render('service/form.html.twig', [
                 "service_form" => $form->createView(),
+                'horaires' => $horaires,
             ]);
         }
         return $this->redirectToRoute("home");

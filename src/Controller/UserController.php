@@ -18,6 +18,10 @@ class UserController extends AbstractController
     {
         if ($this->isGranted('ROLE_ADMIN')) {
 
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
+
             $user = new User($userPasswordHasher);
 
             $form = $this->createForm(UserType::class, $user);
@@ -32,6 +36,7 @@ class UserController extends AbstractController
             }
             return $this->render('user/form.html.twig', [
                 'user_form' => $form->createView(),
+                'horaires' => $horaires,
             ]);
         }
         return $this->redirectToRoute('home');

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Car;
+use App\Entity\Planning;
 use App\Form\CarType;
 use App\Repository\CarRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,6 +19,10 @@ class CarsController extends AbstractController
     #[Route('/cars', name: 'cars')]
     public function index(ManagerRegistry $doctrine, Request $request, CarRepository $repo): Response
     {
+        //Récupération du planning d'ouverture
+        $repositoryPlanning = $doctrine->getRepository(Planning::class);
+        $horaires = $repositoryPlanning->findAll();
+
         $search = $request->request->get('search');
         $repository = $doctrine->getRepository(Car::class);
         $cars = $repository->findAll();
@@ -28,6 +33,7 @@ class CarsController extends AbstractController
 
         return $this->render('cars/index.html.twig', [
             "cars" => $cars,
+            "horaires" => $horaires,
         ]);
     }
 
@@ -35,6 +41,10 @@ class CarsController extends AbstractController
     public function create(Request $request, ManagerRegistry $doctrine, SluggerInterface $slugger): Response
     {
         if ($this->getUser()) {
+
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
 
             $car = new Car();
 
@@ -68,6 +78,7 @@ class CarsController extends AbstractController
 
             return $this->render('cars/form.html.twig', [
                 "car_form" => $form->createView(),
+                "horaires" => $horaires,
             ]);
 
         }
@@ -78,6 +89,10 @@ class CarsController extends AbstractController
     public function update(Car $car, Request $request, ManagerRegistry $doctrine): Response
     {
         if ($this->getUser()) {
+
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
 
             $form = $this->createForm(CarType::class, $car);
 
@@ -91,6 +106,7 @@ class CarsController extends AbstractController
 
             return $this->render('cars/form.html.twig', [
                 "car_form" => $form->createView(),
+                "horaires" => $horaires,
             ]);
         }
         return $this->redirectToRoute("cars");
