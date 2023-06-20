@@ -1,3 +1,5 @@
+// Affichage des mots de passe
+
 const togglePassword = () => {
     //affichage password
     const passwordInput = document.querySelector('#user_password')
@@ -21,3 +23,6 @@ const toggleConfirmPassword = () => {
     const eyeIconSlash = document.querySelector('#confirm_eye-slash')
     eyeIconSlash.classList.contains('d-none') ? eyeIconSlash.classList.remove('d-none') : eyeIconSlash.classList.add('d-none')
 }
+
+// Double range sliders
+

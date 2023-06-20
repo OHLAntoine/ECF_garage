@@ -2,6 +2,11 @@
 
 {% block title %}🚗Crée un nouvel utilisateur 🚗{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/scripts/functions.js')}}"></script>
+{% endblock %}
+
 {% block body %}
 <div class="mt-5 mb-5">
     {{ form_start(user_form) }}

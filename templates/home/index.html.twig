@@ -6,12 +6,12 @@
         <h2 class="pb-2 border-bottom border-danger">Nos services</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             {% for service in services %}
-                <div class="feature col">
+                <div class="feature col d-flex flex-column align-items-start">
                     <div class="feature-icon d-inline-flex align-items-center justify-content-center bg-gradient fs-2 mb-3">
                         <i class="{{ random(['bi bi-tools', 'bi bi-wrench', 'bi bi-wrench-adjustable', 'bi bi-screwdriver']) }}"></i>
                     </div>
                     <h3 class="fs-2 text-body-emphasis">{{ service.title }}</h3>
-                    <p>{{ service.description }}</p>
+                    <p class="flex-grow-1">{{ service.description }}</p>
                     <a href="#" class="btn btn-primary">Demander un devis</a>
                     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                         <a href="{{ path('update-service', {'id': service.id}) }}" class="icon-link text-danger">Modifier ce service</a>

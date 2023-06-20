@@ -2,6 +2,11 @@
 
 {% block title %}🚗Connectez-vous ! 🚗{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/scripts/functions.js')}}"></script>
+{% endblock %}
+
 {% block body %}
 
     {% if error %}
