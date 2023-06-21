@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}🚗Publier un avis 🚗{% endblock %}
+
+{% block body %}
+    <div class="mt-5 mb-5">
+        {{ form_start(avis_form) }}
+            {{ form_row(avis_form.name) }}
+            {{ form_row(avis_form.commentary) }}
+            {{ form_row(avis_form.note) }}
+
+            {% if app.user %}
+                {{ form_row(avis_form.isModerate) }}
+            {% endif %}
+
+            {{ form_row(avis_form._token) }}
+
+            <input type="submit" value="Publier l'avis" class="btn btn-primary mb-5">
+    </div>
+
+{% endblock %}
