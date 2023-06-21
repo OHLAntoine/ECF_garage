@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Avis;
 use App\Entity\Car;
 use App\Entity\Planning;
 use App\Entity\Service;
@@ -104,6 +105,37 @@ class AppFixtures extends Fixture
         $dimanche = new Planning();
         $dimanche->setDayOfTheWeek('Dimanche')->setMorningStart(null)->setMorningEnd(null)->setAfternoonStart(null)->setAfternoonEnd(null);
         $manager->persist($dimanche);
+        $manager->flush();
+        
+        // Création de quelques avis clients
+        $avis1 = new Avis();
+        $avis1->setName('John Doe')->setCommentary('Très bien reçu par cette équipe de professionnel qui ont su réparer ma voiture à la perfection')->setNote(5)->setIsModerate(true);
+        $manager->persist($avis1);
+        $manager->flush();
+
+        $avis2 = new Avis();
+        $avis2->setName('Mr Smith')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(4)->setIsModerate(true);
+        $manager->persist($avis2);
+        $manager->flush();
+
+        $avis3 = new Avis();
+        $avis3->setName('Bob le bricoleur')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(3);
+        $manager->persist($avis3);
+        $manager->flush();
+
+        $avis4 = new Avis();
+        $avis4->setName('Optimus Prime')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(4)->setIsModerate(true);
+        $manager->persist($avis4);
+        $manager->flush();
+
+        $avis5 = new Avis();
+        $avis5->setName('Bumbelbee')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(5)->setIsModerate(true);
+        $manager->persist($avis5);
+        $manager->flush();
+
+        $avis6 = new Avis();
+        $avis6->setName('Arthur Weasley')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(2);
+        $manager->persist($avis6);
         $manager->flush();
     }
 }
