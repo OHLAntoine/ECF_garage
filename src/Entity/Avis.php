@@ -88,12 +88,12 @@ class Avis
         return $this;
     }
 
-    public function getCreateAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreateAt(\DateTimeInterface $createAt): static
+    public function setCreatedAt(\DateTimeInterface $createAt): static
     {
         $this->createdAt = $createAt;
 

@@ -137,5 +137,30 @@ class AppFixtures extends Fixture
         $avis6->setName('Arthur Weasley')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(2);
         $manager->persist($avis6);
         $manager->flush();
+
+        $avis7 = new Avis();
+        $avis7->setName('Megatron')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(3)->setIsModerate(true);
+        $manager->persist($avis7);
+        $manager->flush();
+
+        $avis8 = new Avis();
+        $avis8->setName('Starscream')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(4)->setIsModerate(true);
+        $manager->persist($avis8);
+        $manager->flush();
+
+        $avis9 = new Avis();
+        $avis9->setName('Ironhide')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(2)->setIsModerate(true);
+        $manager->persist($avis9);
+        $manager->flush();
+
+        $avis10 = new Avis();
+        $avis10->setName('Ratchet')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(1)->setIsModerate(true);
+        $manager->persist($avis10);
+        $manager->flush();
+
+        $avis11 = new Avis();
+        $avis11->setName('Jazz')->setCommentary('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio laboriosam iure numquam eum ducimus quas nobis consequuntur asperiores quasi nemo ratione assumenda, alias magnam porro voluptatibus, dolor maxime explicabo impedit!')->setNote(0)->setIsModerate(true);
+        $manager->persist($avis11);
+        $manager->flush();
     }
 }

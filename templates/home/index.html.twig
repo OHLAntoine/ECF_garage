@@ -22,6 +22,127 @@
         </div>
     </div>
 
-    <div class"separation"></div>
+    <div class="d-flex justify-content-center align-items-center mb-5"><span class="line"></span></div>
+
+    <div class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom border-danger">Les avis de nos clients</h2>
+        <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
+                        {% for comment in avis|slice(0,3) %}
+                            <div class="card text-center w-25 card-avis">
+                                <div class="card-header">
+                                    {{ comment.name }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {% if comment.note == 0 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% elseif comment.note == 5 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for i in 1..comment.note %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            {% for i in 1..(5 - comment.note) %}
+                                                    <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </h5>
+                                    <p class="card-text">{{ comment.commentary }}</p>
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
+                        {% for comment in avis|slice(3,3) %}
+                            <div class="card text-center w-25 card-avis">
+                                <div class="card-header">
+                                    {{ comment.name }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {% if comment.note == 0 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% elseif comment.note == 5 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for i in 1..comment.note %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            {% for i in 1..(5 - comment.note) %}
+                                                    <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </h5>
+                                    <p class="card-text">{{ comment.commentary }}</p>
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
+                        {% for comment in avis|slice(6,3) %}
+                            <div class="card text-center w-25 card-avis">
+                                <div class="card-header">
+                                    {{ comment.name }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {% if comment.note == 0 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% elseif comment.note == 5 %}
+                                            {% for i in 1..5 %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for i in 1..comment.note %}
+                                                <i class="bi bi-star-fill"></i>
+                                            {% endfor %}
+                                            {% for i in 1..(5 - comment.note) %}
+                                                    <i class="bi bi-star"></i>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </h5>
+                                    <p class="card-text">{{ comment.commentary }}</p>
+                                </div>
+                                <div class="card-footer text-body-secondary">
+                                    {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev bg-danger carousel-left" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next bg-danger carousel-right" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
 
 {% endblock %}
