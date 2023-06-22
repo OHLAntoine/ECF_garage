@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}🚗Contactez nous !🚗{% endblock %}
+
+{% block body %}
+    <div class="mb-5 mt-5">
+        {{ form_start(contact_form) }}
+            {{ form_rest(contact_form) }}
+            <input type="submit" value="Envoyer la demande de contact" class="btn btn-primary mb-5">
+    </div>
+
+{% endblock %}

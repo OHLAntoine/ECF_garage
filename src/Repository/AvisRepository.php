@@ -50,6 +50,17 @@ class AvisRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllPending(): array
+    {
+        return $this->createQueryBuilder('avis')
+            ->andWhere('avis.isModerate = 0')
+            ->orderBy('avis.createdAt', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Avis[] Returns an array of Avis objects
 //     */

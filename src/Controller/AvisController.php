@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Avis;
 use App\Entity\Planning;
 use App\Form\AvisType;
+use App\Repository\AvisRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,5 +37,51 @@ class AvisController extends AbstractController
             'avis_form' => $form->createView(),
             'horaires' => $horaires,
         ]);
+    }
+
+    #[Route('/pending-avis', name: 'pending-avis')]
+    public function moderate(ManagerRegistry $doctrine, AvisRepository $repoAvis): Response
+    {
+        if ($this->getUser()) {
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
+    
+            //Récupération des avis clients à modéré
+            $avis = $repoAvis->findAllPending();
+    
+            return $this->render('avis/index.html.twig', [
+                'avis' => $avis,
+                'horaires' => $horaires,
+            ]);
+        }
+        return $this->redirectToRoute("home");
+    }
+
+    #[Route('/update-avis/{id<\d+>}', name: 'update-avis')]
+    public function update(Avis $avis, Request $request, ManagerRegistry $doctrine): Response
+    {
+        if ($this->getUser()) {
+
+            //Récupération du planning d'ouverture
+            $repositoryPlanning = $doctrine->getRepository(Planning::class);
+            $horaires = $repositoryPlanning->findAll();
+
+            $form = $this->createForm(AvisType::class, $avis);
+
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->flush();
+
+                return $this->redirectToRoute("pending-avis");
+            }
+
+            return $this->render('avis/form.html.twig', [
+                "avis_form" => $form->createView(),
+                "horaires" => $horaires,
+            ]);
+        }
+        return $this->redirectToRoute("home");
     }
 }

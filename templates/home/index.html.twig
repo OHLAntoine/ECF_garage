@@ -35,7 +35,7 @@
                                 <div class="card-header">
                                     {{ comment.name }}
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column align-items-center justify-content-center">
                                     <h5 class="card-title">
                                         {% if comment.note == 0 %}
                                             {% for i in 1..5 %}
@@ -54,7 +54,7 @@
                                             {% endfor %}
                                         {% endif %}
                                     </h5>
-                                    <p class="card-text">{{ comment.commentary }}</p>
+                                    <p class="card-text flex-grow-1">{{ comment.commentary }}</p>
                                 </div>
                                 <div class="card-footer text-body-secondary">
                                     {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}

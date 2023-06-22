@@ -39,7 +39,7 @@
                                     <a class="nav-link" href="/cars">Nos occasions</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">Nous contacter</a>
+                                    <a href="contact-us" class="nav-link">Nous contacter</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="new-avis" class="nav-link me-2">Laisser un avis</a>
@@ -51,6 +51,7 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-dark">
                                             <li><a href="new-car" class="dropdown-item">Ajouter un véhicule</a></li>
+                                            <li><a href="pending-avis" class="dropdown-item">Modérer les avis</a></li>
                                     {% if 'ROLE_ADMIN' in app.user.roles %}
                                             <li><a href="new-user" class="dropdown-item">Ajouter un nouvel utilisateur</a></li>
                                             <li><a href="new-service" class="dropdown-item">Ajouter un nouveau service</a></li>
@@ -60,7 +61,7 @@
                                 {% endif %}
                             </ul>
                             {% if app.user %}
-                                    <a href="logout" class="btn btn-danger">Se déconnecter</a>
+                                    <a href="logout" class="btn btn-danger text-light">Se déconnecter</a>
                                 {% else %}
                                     <a href="login" class="btn btn-secondary">Connexion</a>
                             {% endif %}
