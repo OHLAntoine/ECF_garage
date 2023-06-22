@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -46,11 +47,11 @@ class ContactType extends AbstractType {
                 ]
             ])
             ->add("telNumber", NumberType::class,[
-                "label" => "Votre numéro de téléphone",
+                "label" => "Votre numéro de téléphone (sans le 0 au début) :",
                 "required" => true,
                 "constraints" => [
                     new NotBlank(["message" => "Vous devez rentrer un numéro de téléphone"]),
-                    new Length(["min" => 10, "minMessage" => "Vous devez entrer un numéro Français (soit 10nombres)", "max" => 10, "maxMessage" => "Vous devez entrer un numéro Français (soit 10nombres)"])
+                    new Length(["min" => 9, "minMessage" => "Vous devez entrer un numéro Français (soit 9 chiffres sans le 0 au début)", "max" => 9, "maxMessage" => "Vous devez entrer un numéro Français (soit 9 chiffres) et sans espaces"])
                 ]
             ])
             ->add("message", TextareaType::class,[
@@ -66,7 +67,7 @@ class ContactType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // "data_class" => ,
+            "data_class" => Contact::class,
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
             'csrf_token_id' => 'contact_item',
