@@ -12,7 +12,7 @@
                     </div>
                     <h3 class="fs-2 text-body-emphasis">{{ service.title }}</h3>
                     <p class="flex-grow-1">{{ service.description }}</p>
-                    <a href="#" class="btn btn-primary">Demander un devis</a>
+                    <a href="{{ path('contact-us-service', {'id': service.id}) }}" class="btn btn-primary">Demander un devis</a>
                     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
                         <a href="{{ path('update-service', {'id': service.id}) }}" class="icon-link text-danger">Modifier ce service</a>
                         <a href="{{ path('delete-service', {'id': service.id}) }}" class="icon-link text-danger">Supprimer ce service</a>

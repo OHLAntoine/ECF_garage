@@ -37,7 +37,7 @@
                         <li class="list-group-item">{{ car.km }}km au compteur</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="btn btn-primary">En savoir plus ?</a>
+                        <a href="{{ path('contact-us-car', {'id': car.id}) }}" class="btn btn-primary">En savoir plus ?</a>
                         {% if app.user %}
                             <a href="{{ path('update-car', {'id': car.id}) }}" class="btn btn-secondary">Modifier</a>
                             <a href="{{ path('delete-car', {'id': car.id}) }}" class="btn btn-danger">Supprimer</a>

@@ -5,6 +5,14 @@
 {% block body %}
     <div class="mb-5 mt-5">
         {{ form_start(contact_form) }}
+            {{ form_label(contact_form.subject) }}
+                {% if car %}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': car.title }}) }}
+                {% elseif service %}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': service.title }}) }}
+                {% else %}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': '' }}) }}
+                {% endif %}
             {{ form_rest(contact_form) }}
             <input type="submit" value="Envoyer la demande de contact" class="btn btn-primary mb-5">
     </div>
