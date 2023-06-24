@@ -57,6 +57,7 @@ a {
 
 /* Body */
 
+/* Véhicules */
 .cards-car {
     width: 18rem;
 }
@@ -73,6 +74,11 @@ a {
     position: relative;
 }
 
+/* Double range slider input */
+
+
+
+/* Services */
 .carousel-left,
 .carousel-right {
     width: 1rem;
