@@ -45,7 +45,24 @@ class CarRepository extends ServiceEntityRepository
             ->andWhere('car.title LIKE :search')
             ->setParameter('search', '%'.$search.'%')
             ->orderBy('car.circulationDate', 'DESC')
-            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByRange($minPrice, $maxPrice, $minKm, $maxKm, $minYear, $maxYear): array
+    {
+        return $this->createQueryBuilder('car')
+            ->andWhere('car.price BETWEEN :minPrice AND :maxPrice
+                    AND car.km BETWEEN :minKm AND :maxKm
+                    AND car.circulationDate BETWEEN :minYear AND :maxYear')
+            ->setParameter('minPrice', $minPrice)
+            ->setParameter('maxPrice', $maxPrice)
+            ->setParameter('minKm', $minKm)
+            ->setParameter('maxKm', $maxKm)
+            ->setParameter('minYear', $minYear)
+            ->setParameter('minYear', $maxYear)
+            ->orderBy('car.circulationDate', 'DESC')
             ->getQuery()
             ->getResult()
         ;

@@ -31,6 +31,18 @@ class CarsController extends AbstractController
             $cars = $repo->findBySearch($search);
         }
 
+        if ($request->isXmlHttpRequest()) {
+            dump($request->getContent());
+            // $minPrice = $request->request->get('minPrice');
+            // $maxPrice = $request->request->get('maxPrice');
+            // $minKm = $request->request->get('minKm');
+            // $maxKm = $request->request->get('maxKm');
+            // $minYear = $request->request->get('minYear');
+            // $maxYear = $request->request->get('maxYear');
+
+            // $cars = $repo->findByRange($minPrice, $maxPrice, $minKm, $maxKm, $minYear, $maxYear);
+        }
+
         return $this->render('cars/index.html.twig', [
             "cars" => $cars,
             "horaires" => $horaires,
