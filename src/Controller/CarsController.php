@@ -9,6 +9,7 @@ use App\Repository\CarRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,15 +33,16 @@ class CarsController extends AbstractController
         }
 
         if ($request->isXmlHttpRequest()) {
-            dump($request->getContent());
-            // $minPrice = $request->request->get('minPrice');
-            // $maxPrice = $request->request->get('maxPrice');
-            // $minKm = $request->request->get('minKm');
-            // $maxKm = $request->request->get('maxKm');
-            // $minYear = $request->request->get('minYear');
-            // $maxYear = $request->request->get('maxYear');
-
-            // $cars = $repo->findByRange($minPrice, $maxPrice, $minKm, $maxKm, $minYear, $maxYear);
+            $data = json_decode($request->getContent(), true);
+            $minPrice = $data['minPrice'];
+            $maxPrice = $data['maxPrice'];
+            $minKm = $data['minKm'];
+            $maxKm = $data['maxKm'];
+            $minYear = $data['minYear'];
+            $maxYear = $data['maxYear'];
+            
+            $cars = $repo->findByRange($minPrice, $maxPrice, $minKm, $maxKm, $minYear, $maxYear);
+            return new JsonResponse($cars);
         }
 
         return $this->render('cars/index.html.twig', [
@@ -76,7 +78,7 @@ class CarsController extends AbstractController
                             $newFilename
                         );
                     } catch (FileException $e) {
-                        dump($e);
+                        // error ?
                     }
                     $car->setImage($newFilename);
                 }

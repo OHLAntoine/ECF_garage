@@ -61,10 +61,10 @@ class CarRepository extends ServiceEntityRepository
             ->setParameter('minKm', $minKm)
             ->setParameter('maxKm', $maxKm)
             ->setParameter('minYear', $minYear)
-            ->setParameter('minYear', $maxYear)
+            ->setParameter('maxYear', $maxYear)
             ->orderBy('car.circulationDate', 'DESC')
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
 

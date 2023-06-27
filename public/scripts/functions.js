@@ -44,18 +44,7 @@ $( function() {
 $(function () {
     $("#price-slider-range").slider();
     $("#price-slider-range").on('slidechange', function () {
-        fetch('/cars', { method: 'POST',
-            headers: { 'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: JSON.stringify({
-                'minPrice': $( "#price-slider-range" ).slider( "values", 0 ),
-                'maxPrice': $( "#price-slider-range" ).slider( "values", 1 ),
-                'minKm': $( "#km-slider-range" ).slider( "values", 0 ),
-                'maxKm': $( "#km-slider-range" ).slider( "values", 1 ),
-                'minYear': $( "#year-slider-range" ).slider( "values", 0 ),
-                'maxYear': $( "#year-slider-range" ).slider( "values", 1 )
-            })
-        });
+        filterCars();
     })
 });
 
@@ -77,18 +66,7 @@ $( function() {
 $(function () {
     $("#km-slider-range").slider();
     $("#km-slider-range").on('slidechange', function () {
-        fetch('/cars', { method: 'POST',
-            headers: { 'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: JSON.stringify({
-                'minPrice': $( "#price-slider-range" ).slider( "values", 0 ),
-                'maxPrice': $( "#price-slider-range" ).slider( "values", 1 ),
-                'minKm': $( "#km-slider-range" ).slider( "values", 0 ),
-                'maxKm': $( "#km-slider-range" ).slider( "values", 1 ),
-                'minYear': $( "#year-slider-range" ).slider( "values", 0 ),
-                'maxYear': $( "#year-slider-range" ).slider( "values", 1 )
-            })
-        });
+        filterCars();
     })
 });
 
@@ -110,7 +88,14 @@ $( function() {
 $(function () {
     $("#year-slider-range").slider();
     $("#year-slider-range").on('slidechange', function () {
-        fetch('/cars', { method: 'POST',
+        filterCars();
+    })
+});
+
+// Filtre des voitures
+
+function filterCars() {
+    fetch('/cars', { method: 'POST',
             headers: { 'X-Requested-With': 'XMLHttpRequest'
             },
             body: JSON.stringify({
@@ -121,6 +106,16 @@ $(function () {
                 'minYear': $( "#year-slider-range" ).slider( "values", 0 ),
                 'maxYear': $( "#year-slider-range" ).slider( "values", 1 )
             })
-        });
-    })
-});
+        })
+        .then((response) => {
+                    if(response.ok){
+                        return response.json();
+                    } else {
+                        console.error("Erreur réponse : " + response.status);
+                    }
+                })
+                .then((data) => {
+                    console.log(data);
+                })
+                .catch((error) => console.error(error));
+}
