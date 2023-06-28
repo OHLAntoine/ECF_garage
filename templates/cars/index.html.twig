@@ -48,32 +48,8 @@
         </div> 
     </div>
 
-    <div class="d-flex align-items-center justify-content-around mt-3 row">
+    <section>
+        {% include "cars/carsList.html.twig" %}
+    </section>
 
-        {% for car in cars %}
-
-            <div class="card col-6 mb-5 cards-car">
-                {% if car.image %}
-                    <img src={{ asset('uploads/') ~ car.image }} class="card-img-top car-image" alt="{{ car.image }}">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ car.title }}</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ car.price }}€</li>
-                        <li class="list-group-item">Mise en circulation en {{ car.circulationDate }}</li>
-                        <li class="list-group-item">{{ car.km }}km au compteur</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="{{ path('contact-us-car', {'id': car.id}) }}" class="btn btn-primary">En savoir plus ?</a>
-                        {% if app.user %}
-                            <a href="{{ path('update-car', {'id': car.id}) }}" class="btn btn-secondary">Modifier</a>
-                            <a href="{{ path('delete-car', {'id': car.id}) }}" class="btn btn-danger">Supprimer</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            
-        {% endfor %}
-
-    </div>
 {% endblock %}

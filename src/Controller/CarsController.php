@@ -42,7 +42,10 @@ class CarsController extends AbstractController
             $maxYear = $data['maxYear'];
             
             $cars = $repo->findByRange($minPrice, $maxPrice, $minKm, $maxKm, $minYear, $maxYear);
-            return new JsonResponse($cars);
+            return $this->render('cars/carsList.html.twig', [
+                "cars" => $cars,
+                "horaires" => $horaires,
+            ]);
         }
 
         return $this->render('cars/index.html.twig', [
