@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Planning;
 use App\Entity\User;
 use App\Form\UserType;
 use Doctrine\Persistence\ManagerRegistry;

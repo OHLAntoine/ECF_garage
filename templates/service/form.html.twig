@@ -4,8 +4,12 @@
 
 {% block body %}
 
-    {{ form_start(service_form) }}
-        {{ form_rest(service_form) }}
-        <input type="submit" value="Publier le service" class="btn btn-primary mb-5">
+    <div class="mt-5 mb-5">
+
+        {{ form_start(service_form) }}
+            {{ form_rest(service_form) }}
+            <input type="submit" value="Publier le service" class="btn btn-primary mb-5">
+
+    </div>
 
 {% endblock %}
