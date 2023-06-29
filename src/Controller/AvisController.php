@@ -58,29 +58,16 @@ class AvisController extends AbstractController
         return $this->redirectToRoute("home");
     }
 
-    #[Route('/update-avis/{id<\d+>}', name: 'update-avis')]
-    public function update(Avis $avis, Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/confirm-avis/{id<\d+>}', name: 'confirm-avis')]
+    public function confirm(Avis $avis, ManagerRegistry $doctrine): Response
     {
         if ($this->getUser()) {
 
-            //Récupération du planning d'ouverture
-            $repositoryPlanning = $doctrine->getRepository(Planning::class);
-            $horaires = $repositoryPlanning->findAll();
+            $avis->setIsModerate(true);
+            $entityManager = $doctrine->getManager();
+            $entityManager->flush();
 
-            $form = $this->createForm(AvisType::class, $avis);
-
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $entityManager = $doctrine->getManager();
-                $entityManager->flush();
-
-                return $this->redirectToRoute("pending-avis");
-            }
-
-            return $this->render('avis/form.html.twig', [
-                "avis_form" => $form->createView(),
-                "horaires" => $horaires,
-            ]);
+            return $this->redirectToRoute("pending-avis");
         }
         return $this->redirectToRoute("home");
     }

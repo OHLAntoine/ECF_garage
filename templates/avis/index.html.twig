@@ -2,39 +2,47 @@
 
 {% block body %}
 
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
-        {% for comment in avis %}
-            <div class="card text-center w-25 m-2 card-avis">
-                <div class="card-header">
-                    {{ comment.name }}
+    {% if avis is empty %}
+        <div class="d-flex align-items-center justify-content-center mt-5 mb-5 row">
+            <h1 class="text-danger text-center">Aucun avis en attente de modération.</h1>
+        </div>
+    {% else %}
+
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
+            {% for comment in avis %}
+                <div class="card text-center w-25 m-2 card-avis">
+                    <div class="card-header">
+                        {{ comment.name }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {% if comment.note == 0 %}
+                                {% for i in 1..5 %}
+                                    <i class="bi bi-star"></i>
+                                {% endfor %}
+                            {% elseif comment.note == 5 %}
+                                {% for i in 1..5 %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% endfor %}
+                            {% else %}
+                                {% for i in 1..comment.note %}
+                                    <i class="bi bi-star-fill"></i>
+                                {% endfor %}
+                                {% for i in 1..(5 - comment.note) %}
+                                    <i class="bi bi-star"></i>
+                                {% endfor %}
+                            {% endif %}
+                        </h5>
+                        <p class="card-text">{{ comment.commentary }}</p>
+                        <a href="{{ path('confirm-avis', {'id': comment.id}) }}" class="card-link text-danger">Ajouter cet avis !</a>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {% if comment.note == 0 %}
-                            {% for i in 1..5 %}
-                                <i class="bi bi-star"></i>
-                            {% endfor %}
-                        {% elseif comment.note == 5 %}
-                            {% for i in 1..5 %}
-                                <i class="bi bi-star-fill"></i>
-                            {% endfor %}
-                        {% else %}
-                            {% for i in 1..comment.note %}
-                                <i class="bi bi-star-fill"></i>
-                            {% endfor %}
-                            {% for i in 1..(5 - comment.note) %}
-                                <i class="bi bi-star"></i>
-                            {% endfor %}
-                        {% endif %}
-                    </h5>
-                    <p class="card-text">{{ comment.commentary }}</p>
-                    <a href="{{ path('update-avis', {'id': comment.id}) }}" class="card-link text-danger">Modéré cet avis ?</a>
-                </div>
-                <div class="card-footer text-body-secondary">
-                    {{ comment.createdAt | date("d/m/y") }} à {{ comment.createdAt | date("H:i")}}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+
+    {% endif %}
 
 {% endblock %}

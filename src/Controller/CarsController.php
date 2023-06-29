@@ -9,7 +9,6 @@ use App\Repository\CarRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,10 +23,10 @@ class CarsController extends AbstractController
         $repositoryPlanning = $doctrine->getRepository(Planning::class);
         $horaires = $repositoryPlanning->findAll();
 
-        $search = $request->request->get('search');
         $repository = $doctrine->getRepository(Car::class);
         $cars = $repository->findAll();
 
+        $search = $request->request->get('search');
         if ($search) {
             $cars = $repo->findBySearch($search);
         }
