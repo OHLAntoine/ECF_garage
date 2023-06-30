@@ -79,3 +79,6 @@
     --bs-gradient: none;
 }
 
+.text-danger {
+    --bs-text-color: var(--danger);
+}

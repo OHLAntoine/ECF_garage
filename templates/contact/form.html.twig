@@ -7,11 +7,11 @@
         {{ form_start(contact_form) }}
             {{ form_label(contact_form.subject) }}
                 {% if car %}
-                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': car.title }}) }}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': 'Demande d\'informations : ' ~ car.title }}) }}
                 {% elseif service %}
-                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': service.title }}) }}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': 'Demande de devis pour : ' ~ service.title }}) }}
                 {% else %}
-                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': '' }}) }}
+                    {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': 'Demande de contact' }}) }}
                 {% endif %}
             {{ form_rest(contact_form) }}
             <input type="submit" value="Envoyer la demande de contact" class="btn btn-primary mb-5">
