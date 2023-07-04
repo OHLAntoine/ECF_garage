@@ -79,9 +79,9 @@
         <div class="footer mt-auto">
             <div class="container">
                 <footer class="pt-5 pb-2">
-                    <div class="row d-flex align-items-center justify-content-between">
+                    <div class="row d-flex align-items-center justify-content-between footer-content">
                         <div class="col-6 col-md-4">
-                            <h5 class="planning">Horaires d'ouverture</h5>
+                            <h5 class="planning planning-title">Horaires d'ouverture</h5>
                             <ul class="nav flex-column planning_times">
                             {% for horaire in horaires %}
                                 {% if horaire.morningStart is empty and horaire.morningEnd is empty and horaire.afternoonStart is empty and horaire.afternoonEnd is empty%}
@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="col-6 col-md-2 mb-3">
-                            <h5 class="adress">Adresse :</h5>
+                            <h5 class="adress adress-title">Adresse :</h5>
                             <ul class="nav flex-column adress">
                                 <li>
                                     <address class="adress">
