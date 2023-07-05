@@ -47,7 +47,7 @@ class ContactType extends AbstractType {
                 ]
             ])
             ->add("telNumber", NumberType::class,[
-                "label" => "Votre numéro de téléphone (sans le 0 au début) :",
+                "label" => "Votre numéro de téléphone :",
                 "required" => true,
                 "constraints" => [
                     new NotBlank(["message" => "Vous devez rentrer un numéro de téléphone"]),

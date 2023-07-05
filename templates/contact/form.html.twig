@@ -13,8 +13,18 @@
                 {% else %}
                     {{ form_widget(contact_form.subject, {'attr': {'class': 'mb-3', 'value': 'Demande de contact' }}) }}
                 {% endif %}
-            {{ form_rest(contact_form) }}
+            {{ form_row(contact_form.firstname) }}
+            {{ form_row(contact_form.lastname) }}
+            {{ form_row(contact_form.email) }}
+            {{ form_label(contact_form.telNumber) }}
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">+33</span>
+                {{ form_widget(contact_form.telNumber) }}
+            </div>
+            {{ form_row(contact_form.message) }}
+            {# {{ form_rest(contact_form) }} #}
             <input type="submit" value="Envoyer la demande de contact" class="btn btn-primary mb-5">
+            {{ form_end(contact_form) }}
     </div>
 
 {% endblock %}
