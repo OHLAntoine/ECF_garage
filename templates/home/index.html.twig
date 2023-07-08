@@ -18,6 +18,11 @@
 
     <div class="container px-4 pb-5" id="featured-2">
         <h2 class="pb-2 border-bottom border-danger">Nos services</h2>
+        {% if services is empty %}
+        <div class="d-flex align-items-center justify-content-center mt-5 mb-5 row">
+            <h1 class="text-danger text-center">Aucun avis en attente de modération.</h1>
+        </div>
+        {% else %}
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             {% for service in services %}
                 <div class="feature col d-flex flex-column align-items-start">
@@ -34,6 +39,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
 
     <div class="d-flex justify-content-center align-items-center mb-5"><span class="line"></span></div>
@@ -53,7 +59,13 @@
             <h2 class="pb-2">Les avis de nos clients</h2>
             <a href="/new-avis" class="text-danger">Déjà client ? → Laissez nous un commentaire !</a>
         </div>
-        <div id="carouselExample" class="carousel slide mt-5">
+
+        {% if avis is empty %}
+        <div class="d-flex align-items-center justify-content-center mt-5 mb-5 row">
+            <h1 class="text-danger text-center">Aucun avis en attente de modération.</h1>
+        </div>
+        {% else %}
+        <div class="carousel slide mt-5">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
@@ -170,6 +182,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        {% endif %}
     </div>
 
 {% endblock %}
