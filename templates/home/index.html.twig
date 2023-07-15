@@ -6,10 +6,10 @@
         <h2 class="pb-2 border-bottom border-danger">Bienvenue !</h2>
         <div class="row g-4 py-5 row-cols-12">
             <p class="text-center">Bienvenue au Garage V. Parrot, professionels dans la réparation automobile depuis plus de 15 ans. 
-            <br>Nous vous accueillons depuis 2021 pour vous proposer notre large de gamme de services à retrouver 
+            <br>Nous vous accueillons depuis 2021, pour vous proposer notre large de gamme de services à retrouver 
             <span><a href="#featured-2" class="text-danger">ci-dessous.</a></span>
             <br>Nous mettons tout en oeuvre pour vous apporter notre expertise afin de vous garantir sécurité et perfomance pour votre véhicule.
-            <br>Avec nous votre voiture est entre de bonnes mains : votre <span><a href="#featured-4" class="text-danger">confiance</a></span> 
+            <br>Avec nous, votre voiture est entre de bonnes mains : votre <span><a href="#featured-4" class="text-danger">confiance</a></span> 
             est notre plus belle réussite.</p>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <h2 class="pb-2 border-bottom border-danger">Nos services</h2>
         {% if services is empty %}
         <div class="d-flex align-items-center justify-content-center mt-5 mb-5 row">
-            <h1 class="text-danger text-center">Aucun avis en attente de modération.</h1>
+            <h1 class="text-danger text-center">Aucun service proposé pour le moment.</h1>
         </div>
         {% else %}
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
@@ -48,7 +48,7 @@
         <h2 class="pb-2 border-bottom border-danger">Vous cherchez un véhicule ?</h2>
         <div class="row g-4 py-5 row-cols-12 d-flex flex-column justify-content-center align-items-center">
             <p class="text-center">Retrouvez notre selection de véhicules vérifiés et remis en état par nos soins afin de vous assurer une garantie de 1 an !</p>
-            <button class="btn btn-primary w-25 text-center button-occasions">Découvrir nos superbes occasions ➡︎</button>
+            <a href='/cars'  class="btn btn-primary w-25 text-center button-occasions">Découvrir nos superbes occasions ➡︎</a>
         </div>
     </div>
 
@@ -62,10 +62,10 @@
 
         {% if avis is empty %}
         <div class="d-flex align-items-center justify-content-center mt-5 mb-5 row">
-            <h1 class="text-danger text-center">Aucun avis en attente de modération.</h1>
+            <h1 class="text-danger text-center">Aucun avis pour le moment.</h1>
         </div>
         {% else %}
-        <div class="carousel slide mt-5">
+        <div id="carouselExample" class="carousel slide mt-5">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-evenly carousel-avis">
