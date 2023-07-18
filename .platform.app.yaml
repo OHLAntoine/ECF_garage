@@ -14,6 +14,7 @@ variables:
         # Configuration des variables d'environnement pour Symfony
         APP_ENV: 'prod'
         APP_DEBUG: 0
+        DATABASE_URL: "mysql://user:@mysqldatabase.internal:3306/main?serverVersion=5.7&charset=utf8mb4"
 
 # The following block defines a single writable directory, 'web/uploads'
 # The 'source' specifies where the writable mount is. The 'local' source
