@@ -6,7 +6,7 @@
 
 3. Télécharger les paquets nécessaire au bon fonctionnement via la ligne de commande :
 
-        > composer update
+        > composer install
 
 4. Modifier le fichier .env :
 
@@ -36,3 +36,24 @@
         > symfony serve
 
 10. Il ne vous reste plus qu'à partir à la découverte du site et ces fonctionnalités !
+
+
+## Démarche à suivre pour execution avec Docker
+
+1. Récupération/clonage du dépot GitHub via l'url https://github.com/OHLAntoine/ECF_garage
+
+2. S'assurer d'avoir Docker et docker-compose installé (https://docs.docker.com/engine/install/)
+
+3. Créer une image de l'application avec la commande :
+
+        > docker build . -f ./docker/Dockerfile -t ecf-garage:1.0
+
+4. Une fois l'image créée, se placer dans le dossier docker :
+
+        > cd docker
+
+5. Puis effectuer le docker-compose via la commande :
+
+        > docker-compose up -d
+
+6. Profiter de l'application sur l'adresse http://localhost:8000/
